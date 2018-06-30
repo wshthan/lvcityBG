@@ -60,7 +60,7 @@
 <body>
 
 	<table id="message_dg" class="easyui-datagrid" style="height: 670px;"
-		url="message/findAll.do" toolbar="#message_toolbar" pagination="true"
+		url="message?action=findAllMessge" toolbar="#message_toolbar" pagination="true"
 		rownumbers="true" fitColumns="true" singleSelect="true"
 		data-options="fit:false,border:false,pageSize:5,pageList:[5,10,15,20]">
 		<thead>
