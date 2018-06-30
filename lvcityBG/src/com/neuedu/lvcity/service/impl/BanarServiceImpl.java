@@ -60,7 +60,7 @@ public class BanarServiceImpl implements BanarService{
 	@Override
 	public List<Banar> findAllBanar(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-				//声明数据库连接对象，用于保存数据库连接对象
+						//声明数据库连接对象，用于保存数据库连接对象
 						Connection conn = null;
 						//声明变量，用于保存数据库查询结果
 						List<Banar> banars = null;
@@ -115,7 +115,7 @@ public class BanarServiceImpl implements BanarService{
 
 	@Override
 	public int deleteBanar(Banar banar) {
-		//声明数据库连接对象，用于保存数据库连接对象
+				//声明数据库连接对象，用于保存数据库连接对象
 				Connection conn = null;
 				//声明变量，用于保存数据库查询结果
 				int result = 0;

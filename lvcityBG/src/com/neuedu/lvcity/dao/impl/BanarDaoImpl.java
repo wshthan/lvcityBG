@@ -137,7 +137,7 @@ public class BanarDaoImpl implements BanarDao {
 	@Override
 	public int deleteBanar(Banar banar) {
 		// TODO Auto-generated method stub
-		//声明变量，用于保存查询结果
+				//声明变量，用于保存查询结果
 				int result = 0;
 				//声明预编译的声明对象变量，用于进行数据库操作的载体
 				PreparedStatement pstam = null;				

@@ -9,5 +9,4 @@ public interface MessageDao {
 	public int messageCount();
 	public List<Message> findAllMessage(Map<String, Object> map);
 	public int deleteMessage(Message message);
-	public Message findOneMessage(Message message);
 }
