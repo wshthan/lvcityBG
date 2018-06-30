@@ -13,97 +13,97 @@ import com.neuedu.lvcity.service.BanarService;
 public class BanarServiceImpl implements BanarService{
 	
 	/**
-	 * ç±»å®ä¾‹
+	 * ÀàÊµÀı
 	 */
 	private static final BanarService instance = new BanarServiceImpl();
 
 	/**
-	 * å–å¾—å®ä¾‹
+	 * È¡µÃÊµÀı
 	 * 
-	 * @return å®ä¾‹å¯¹è±¡
+	 * @return ÊµÀı¶ÔÏó
 	 */
 	public static BanarService getInstance() {
 		return instance;
 	}
 
 	/**
-	 * æ„é€ æ–¹æ³•
+	 * ¹¹Ôì·½·¨
 	 */
 	private BanarServiceImpl() {
 	}
 
 	@Override
 	public int banarCount() {
-		//å£°æ˜æ•°æ®åº“è¿æ¥å¯¹è±¡ï¼Œç”¨äºä¿å­˜æ•°æ®åº“è¿æ¥å¯¹è±¡
+		//ÉùÃ÷Êı¾İ¿âÁ¬½Ó¶ÔÏó£¬ÓÃÓÚ±£´æÊı¾İ¿âÁ¬½Ó¶ÔÏó
 		Connection conn = null;
-		//å£°æ˜å˜é‡ï¼Œç”¨äºä¿å­˜æ•°æ®åº“æŸ¥è¯¢ç»“æœ
+		//ÉùÃ÷±äÁ¿£¬ÓÃÓÚ±£´æÊı¾İ¿â²éÑ¯½á¹û
 		int result = 0;
 		try{
-			//è°ƒç”¨æ•°æ®åº“å·¥å…·ç±»çš„getConnectionæ–¹æ³•ï¼Œå–å¾—æ•°æ®åº“è¿æ¥å¯¹è±¡ï¼Œå¹¶èµ‹å€¼ç»™æ•°æ®åº“è¿æ¥å¯¹è±¡å˜é‡
+			//µ÷ÓÃÊı¾İ¿â¹¤¾ßÀàµÄgetConnection·½·¨£¬È¡µÃÊı¾İ¿âÁ¬½Ó¶ÔÏó£¬²¢¸³Öµ¸øÊı¾İ¿âÁ¬½Ó¶ÔÏó±äÁ¿
 			conn = DBUtils.getConnection();
-			//åˆ›å»ºuserDaoçš„å®ç°ç±»å¯¹è±¡
+			//´´½¨userDaoµÄÊµÏÖÀà¶ÔÏó
 			BanarDao banarDao = new BanarDaoImpl(conn);
 			
-			//è°ƒç”¨daoä¸­çš„banarCountæ–¹æ³•ï¼Œè¿›è¡Œæ•°æ®åº“æŸ¥è¯¢æ“ä½œï¼Œç»“æœèµ‹å€¼ç»™æŸ¥è¯¢ç»“æœå˜é‡
+			//µ÷ÓÃdaoÖĞµÄbanarCount·½·¨£¬½øĞĞÊı¾İ¿â²éÑ¯²Ù×÷£¬½á¹û¸³Öµ¸ø²éÑ¯½á¹û±äÁ¿
 			result = banarDao.banarCount();	
 		
 		} catch (Exception e) {
-			System.out.println("æŸ¥è¯¢ç»Ÿè®¡æ‰€æœ‰banaré”™è¯¯"+e.getMessage());
+			System.out.println("²éÑ¯Í³¼ÆËùÓĞbanar´íÎó"+e.getMessage());
 		} finally {
-			//è°ƒç”¨æ•°æ®åº“å·¥å…·ç±»çš„closeConnectionæ–¹æ³•ï¼Œå…³é—­è¿æ¥
+			//µ÷ÓÃÊı¾İ¿â¹¤¾ßÀàµÄcloseConnection·½·¨£¬¹Ø±ÕÁ¬½Ó
 			DBUtils.closeConnection(conn);
 		}
-		//è¿”å›æ•°æ®åº“æŸ¥è¯¢ç»“æœ
+		//·µ»ØÊı¾İ¿â²éÑ¯½á¹û
 		return result;
 	}
 
 	@Override
 	public List<Banar> findAllBanar(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-				//å£°æ˜æ•°æ®åº“è¿æ¥å¯¹è±¡ï¼Œç”¨äºä¿å­˜æ•°æ®åº“è¿æ¥å¯¹è±¡
+				//ÉùÃ÷Êı¾İ¿âÁ¬½Ó¶ÔÏó£¬ÓÃÓÚ±£´æÊı¾İ¿âÁ¬½Ó¶ÔÏó
 						Connection conn = null;
-						//å£°æ˜å˜é‡ï¼Œç”¨äºä¿å­˜æ•°æ®åº“æŸ¥è¯¢ç»“æœ
+						//ÉùÃ÷±äÁ¿£¬ÓÃÓÚ±£´æÊı¾İ¿â²éÑ¯½á¹û
 						List<Banar> banars = null;
 						try{
-							//è°ƒç”¨æ•°æ®åº“å·¥å…·ç±»çš„getConnectionæ–¹æ³•ï¼Œå–å¾—æ•°æ®åº“è¿æ¥å¯¹è±¡ï¼Œå¹¶èµ‹å€¼ç»™æ•°æ®åº“è¿æ¥å¯¹è±¡å˜é‡
+							//µ÷ÓÃÊı¾İ¿â¹¤¾ßÀàµÄgetConnection·½·¨£¬È¡µÃÊı¾İ¿âÁ¬½Ó¶ÔÏó£¬²¢¸³Öµ¸øÊı¾İ¿âÁ¬½Ó¶ÔÏó±äÁ¿
 							conn = DBUtils.getConnection();
-							//åˆ›å»ºuserDaoçš„å®ç°ç±»å¯¹è±¡
+							//´´½¨userDaoµÄÊµÏÖÀà¶ÔÏó
 							BanarDao banarDao = new BanarDaoImpl(conn);
-							//è°ƒç”¨daoä¸­çš„selectAllæ–¹æ³•ï¼Œè¿›è¡Œæ•°æ®åº“æŸ¥è¯¢æ“ä½œï¼Œç»“æœèµ‹å€¼ç»™æŸ¥è¯¢ç»“æœå˜é‡
+							//µ÷ÓÃdaoÖĞµÄselectAll·½·¨£¬½øĞĞÊı¾İ¿â²éÑ¯²Ù×÷£¬½á¹û¸³Öµ¸ø²éÑ¯½á¹û±äÁ¿
 							banars = banarDao.findAllBanar(map);			
 						
 						} catch (Exception e) {
-							System.out.println("æŸ¥è¯¢æ‰€æœ‰banaré”™è¯¯"+e.getMessage());
+							System.out.println("²éÑ¯ËùÓĞbanar´íÎó"+e.getMessage());
 						} finally {
-							//è°ƒç”¨æ•°æ®åº“å·¥å…·ç±»çš„closeConnectionæ–¹æ³•ï¼Œå…³é—­è¿æ¥
+							//µ÷ÓÃÊı¾İ¿â¹¤¾ßÀàµÄcloseConnection·½·¨£¬¹Ø±ÕÁ¬½Ó
 							DBUtils.closeConnection(conn);
 						}
-						//è¿”å›æ•°æ®åº“æŸ¥è¯¢ç»“æœ
+						//·µ»ØÊı¾İ¿â²éÑ¯½á¹û
 						return banars;
 	}
 
 	@Override
 	public int addBanar(String imagePath) {
-		//å£°æ˜æ•°æ®åº“è¿æ¥å¯¹è±¡ï¼Œç”¨äºä¿å­˜æ•°æ®åº“è¿æ¥å¯¹è±¡
+		//ÉùÃ÷Êı¾İ¿âÁ¬½Ó¶ÔÏó£¬ÓÃÓÚ±£´æÊı¾İ¿âÁ¬½Ó¶ÔÏó
 		Connection conn = null;
-		//å£°æ˜å˜é‡ï¼Œç”¨äºä¿å­˜æ•°æ®åº“æŸ¥è¯¢ç»“æœ
+		//ÉùÃ÷±äÁ¿£¬ÓÃÓÚ±£´æÊı¾İ¿â²éÑ¯½á¹û
 		int result = 0;
 		try{
-			//è°ƒç”¨æ•°æ®åº“å·¥å…·ç±»çš„getConnectionæ–¹æ³•ï¼Œå–å¾—æ•°æ®åº“è¿æ¥å¯¹è±¡ï¼Œå¹¶èµ‹å€¼ç»™æ•°æ®åº“è¿æ¥å¯¹è±¡å˜é‡
+			//µ÷ÓÃÊı¾İ¿â¹¤¾ßÀàµÄgetConnection·½·¨£¬È¡µÃÊı¾İ¿âÁ¬½Ó¶ÔÏó£¬²¢¸³Öµ¸øÊı¾İ¿âÁ¬½Ó¶ÔÏó±äÁ¿
 			conn = DBUtils.getConnection();
 			DBUtils.beginTransaction(conn);
-			//åˆ›å»ºuserDaoçš„å®ç°ç±»å¯¹è±¡
+			//´´½¨userDaoµÄÊµÏÖÀà¶ÔÏó
 			BanarDao BanarDao = new BanarDaoImpl(conn);
-			//è°ƒç”¨daoä¸­çš„selectAllæ–¹æ³•ï¼Œè¿›è¡Œæ•°æ®åº“æŸ¥è¯¢æ“ä½œï¼Œç»“æœèµ‹å€¼ç»™æŸ¥è¯¢ç»“æœå˜é‡
+			//µ÷ÓÃdaoÖĞµÄselectAll·½·¨£¬½øĞĞÊı¾İ¿â²éÑ¯²Ù×÷£¬½á¹û¸³Öµ¸ø²éÑ¯½á¹û±äÁ¿
 			result = BanarDao.addBanar(imagePath);			
 		    DBUtils.commit(conn);
 		} catch (Exception e) {
-			System.out.println("å¢åŠ banaré”™è¯¯"+e.getMessage());
+			System.out.println("Ôö¼Óbanar´íÎó"+e.getMessage());
 		} finally {
-			//è°ƒç”¨æ•°æ®åº“å·¥å…·ç±»çš„closeConnectionæ–¹æ³•ï¼Œå…³é—­è¿æ¥
+			//µ÷ÓÃÊı¾İ¿â¹¤¾ßÀàµÄcloseConnection·½·¨£¬¹Ø±ÕÁ¬½Ó
 			DBUtils.closeConnection(conn);
 		}
-		//è¿”å›æ•°æ®åº“æŸ¥è¯¢ç»“æœ
+		//·µ»ØÊı¾İ¿â²éÑ¯½á¹û
 		return result;
 	}
 
@@ -115,26 +115,26 @@ public class BanarServiceImpl implements BanarService{
 
 	@Override
 	public int deleteBanar(Banar banar) {
-		//å£°æ˜æ•°æ®åº“è¿æ¥å¯¹è±¡ï¼Œç”¨äºä¿å­˜æ•°æ®åº“è¿æ¥å¯¹è±¡
+		//ÉùÃ÷Êı¾İ¿âÁ¬½Ó¶ÔÏó£¬ÓÃÓÚ±£´æÊı¾İ¿âÁ¬½Ó¶ÔÏó
 				Connection conn = null;
-				//å£°æ˜å˜é‡ï¼Œç”¨äºä¿å­˜æ•°æ®åº“æŸ¥è¯¢ç»“æœ
+				//ÉùÃ÷±äÁ¿£¬ÓÃÓÚ±£´æÊı¾İ¿â²éÑ¯½á¹û
 				int result = 0;
 				try{
-					//è°ƒç”¨æ•°æ®åº“å·¥å…·ç±»çš„getConnectionæ–¹æ³•ï¼Œå–å¾—æ•°æ®åº“è¿æ¥å¯¹è±¡ï¼Œå¹¶èµ‹å€¼ç»™æ•°æ®åº“è¿æ¥å¯¹è±¡å˜é‡
+					//µ÷ÓÃÊı¾İ¿â¹¤¾ßÀàµÄgetConnection·½·¨£¬È¡µÃÊı¾İ¿âÁ¬½Ó¶ÔÏó£¬²¢¸³Öµ¸øÊı¾İ¿âÁ¬½Ó¶ÔÏó±äÁ¿
 					conn = DBUtils.getConnection();
 					DBUtils.beginTransaction(conn);
-					//åˆ›å»ºuserDaoçš„å®ç°ç±»å¯¹è±¡
+					//´´½¨userDaoµÄÊµÏÖÀà¶ÔÏó
 					BanarDao BanarDao = new BanarDaoImpl(conn);
-					//è°ƒç”¨daoä¸­çš„selectAllæ–¹æ³•ï¼Œè¿›è¡Œæ•°æ®åº“æŸ¥è¯¢æ“ä½œï¼Œç»“æœèµ‹å€¼ç»™æŸ¥è¯¢ç»“æœå˜é‡
+					//µ÷ÓÃdaoÖĞµÄselectAll·½·¨£¬½øĞĞÊı¾İ¿â²éÑ¯²Ù×÷£¬½á¹û¸³Öµ¸ø²éÑ¯½á¹û±äÁ¿
 					result = BanarDao.deleteBanar(banar);
 				    DBUtils.commit(conn);
 				} catch (Exception e) {
-					System.out.println("åˆ é™¤banaré”™è¯¯"+e.getMessage());
+					System.out.println("É¾³ıbanar´íÎó"+e.getMessage());
 				} finally {
-					//è°ƒç”¨æ•°æ®åº“å·¥å…·ç±»çš„closeConnectionæ–¹æ³•ï¼Œå…³é—­è¿æ¥
+					//µ÷ÓÃÊı¾İ¿â¹¤¾ßÀàµÄcloseConnection·½·¨£¬¹Ø±ÕÁ¬½Ó
 					DBUtils.closeConnection(conn);
 				}
-				//è¿”å›æ•°æ®åº“æŸ¥è¯¢ç»“æœ
+				//·µ»ØÊı¾İ¿â²éÑ¯½á¹û
 				return result;
 	}
 

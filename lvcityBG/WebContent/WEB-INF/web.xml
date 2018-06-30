@@ -19,7 +19,6 @@
     <url-pattern>*.html</url-pattern>
     <url-pattern>*.gif</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>UsersServlet</display-name>
@@ -30,7 +29,6 @@
     <servlet-name>UsersServlet</servlet-name>
     <url-pattern>/Admin/Users</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>BanarServlet</display-name>
@@ -41,8 +39,6 @@
     <servlet-name>BanarServlet</servlet-name>
     <url-pattern>/Admin/Banar</url-pattern>
   </servlet-mapping>
-  
-  
   <filter>
     <filter-name>LoginFilter</filter-name>
     <filter-class>com.neuedu.lvcity.filter.LoginFilter</filter-class>

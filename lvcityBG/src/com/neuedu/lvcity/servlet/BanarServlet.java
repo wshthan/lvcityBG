@@ -69,7 +69,7 @@ public class BanarServlet extends HttpServlet {
 	}
 
 	private void doDelBanar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// è°ƒç”¨Serviceæ–¹æ³•
+		// µ÷ÓÃService·½·¨
 		BanarService banarService = BanarServiceImpl.getInstance();
 		int banarid = Integer.parseInt(request.getParameter("banarid"));
 		Banar banar = new Banar();
@@ -91,49 +91,49 @@ public class BanarServlet extends HttpServlet {
 
 	@SuppressWarnings("unchecked")
 	private void doAddBanar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// è·å–session
+		// »ñÈ¡session
 		HttpSession se = request.getSession();
-		// è°ƒç”¨Serviceæ–¹æ³•
+		// µ÷ÓÃService·½·¨
 		BanarService banarService = BanarServiceImpl.getInstance();
 
-		// ä¸Šä¼ æ–‡ä»¶çš„ç›®å½•
-		//	 String path = request.getSession().getServletContext().getRealPath("/")+"images";    //æ–‡ä»¶ç³»ç»Ÿçš„è·¯å¾„
-        // String path= System.getProperty("catalina.home") + "\\webapps\\lvcityFG\\images\\";    //tomcatä¸‹é¢çš„è·¯å¾„
+		// ÉÏ´«ÎÄ¼şµÄÄ¿Â¼
+		//	 String path = request.getSession().getServletContext().getRealPath("/")+"images";    //ÎÄ¼şÏµÍ³µÄÂ·¾¶
+        // String path= System.getProperty("catalina.home") + "\\webapps\\lvcityFG\\images\\";    //tomcatÏÂÃæµÄÂ·¾¶
        				
-		//åˆ›å»ºæ–‡ä»¶å¯¹è±¡
+		//´´½¨ÎÄ¼ş¶ÔÏó
 		File savePath = new File(FileUtils.UPLOAD_PATH);	
 		
-		// æ£€æŸ¥æˆ‘ä»¬æ˜¯å¦æœ‰æ–‡ä»¶ä¸Šä¼ è¯·æ±‚
+		// ¼ì²éÎÒÃÇÊÇ·ñÓĞÎÄ¼şÉÏ´«ÇëÇó
 		//boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		
-		// 1,å£°æ˜DiskFileItemFactoryå·¥å‚ç±»ï¼Œç”¨äºåœ¨æŒ‡å®šç£ç›˜ä¸Šè®¾ç½®ä¸€ä¸ªä¸´æ—¶ç›®å½•
+		// 1,ÉùÃ÷DiskFileItemFactory¹¤³§Àà£¬ÓÃÓÚÔÚÖ¸¶¨´ÅÅÌÉÏÉèÖÃÒ»¸öÁÙÊ±Ä¿Â¼
 		DiskFileItemFactory disk = new DiskFileItemFactory(1024 * 10, savePath);
 	
-		// 2,å£°æ˜ServletFileUploadï¼Œæ¥æ”¶ä¸Šè¾¹çš„ä¸´æ—¶æ–‡ä»¶ã€‚ä¹Ÿå¯ä»¥é»˜è®¤å€¼
+		// 2,ÉùÃ÷ServletFileUpload£¬½ÓÊÕÉÏ±ßµÄÁÙÊ±ÎÄ¼ş¡£Ò²¿ÉÒÔÄ¬ÈÏÖµ
 		ServletFileUpload up = new ServletFileUpload(disk);		
 
 		try {
-			// 3,è§£ærequest
+			// 3,½âÎörequest
 			List<FileItem> list;
 			list = up.parseRequest(request);
-			// å¦‚æœå°±ä¸€ä¸ªæ–‡ä»¶ï¼Œ
+			// Èç¹û¾ÍÒ»¸öÎÄ¼ş£¬
 			FileItem file = list.get(0);
-			// è·å–æ–‡ä»¶åï¼š
+			// »ñÈ¡ÎÄ¼şÃû£º
 			String fileName = file.getName();
 			
-			// è·å–æ–‡ä»¶çš„ç±»å‹ï¼š
+			// »ñÈ¡ÎÄ¼şµÄÀàĞÍ£º
 			//String fileType = file.getContentType();
-			// æ–‡ä»¶å¤§å°
+			// ÎÄ¼ş´óĞ¡
 	     	//	int size = file.getInputStream().available();
 			
-			// è·å–æ–‡ä»¶çš„è¾“å…¥æµï¼Œç”¨äºè¯»å–è¦ä¸Šä¼ çš„æ–‡ä»¶
+			// »ñÈ¡ÎÄ¼şµÄÊäÈëÁ÷£¬ÓÃÓÚ¶ÁÈ¡ÒªÉÏ´«µÄÎÄ¼ş
 			InputStream in = file.getInputStream();
 			
-			// å£°æ˜è¾“å‡ºå­—èŠ‚æµï¼Œç”¨äºå°†æ–‡ä»¶ä¸Šä¼ åˆ°ç›®çš„ä½ç½®
+			// ÉùÃ÷Êä³ö×Ö½ÚÁ÷£¬ÓÃÓÚ½«ÎÄ¼şÉÏ´«µ½Ä¿µÄÎ»ÖÃ
 			OutputStream out = new FileOutputStream(new File(savePath + "/" + fileName));
 		
 			
-			// æ–‡ä»¶copy
+			// ÎÄ¼şcopy
 			byte[] b = new byte[1024];
 			int len = 0;
 			while ((len = in.read(b)) != -1) {
@@ -144,13 +144,13 @@ public class BanarServlet extends HttpServlet {
 			out.close();
 		
 
-			// åˆ é™¤ä¸Šä¼ ç”Ÿæˆçš„ä¸´æ—¶æ–‡ä»¶
+			// É¾³ıÉÏ´«Éú³ÉµÄÁÙÊ±ÎÄ¼ş
 			file.delete();
 			
-			//ç½‘æ•°æ®åº“æ·»åŠ è®°å½•ï¼Œåœ¨å‰é¢åŠ ä¸Šå›¾ç‰‡æœåŠ¡å™¨çš„å‰ç¼€			
+			//ÍøÊı¾İ¿âÌí¼Ó¼ÇÂ¼£¬ÔÚÇ°Ãæ¼ÓÉÏÍ¼Æ¬·şÎñÆ÷µÄÇ°×º			
 			int result = banarService.addBanar("http://localhost:9080/uploads/" + fileName);
 			
-			//ç”Ÿæˆè¿”å›ç»“æœçš„map
+			//Éú³É·µ»Ø½á¹ûµÄmap
 			Map<String, Object> map = new HashMap<String, Object>();
 			if (result > 0) {
 				map.put("success", true);
@@ -158,9 +158,9 @@ public class BanarServlet extends HttpServlet {
 				map.put("success", false);
 				map.put("errorMsg", "Save user fail !");
 			}
-           //å°†mapè½¬æˆJSONå¯¹è±¡
+           //½«map×ª³ÉJSON¶ÔÏó
 			String str = JSONObject.toJSONString(map);
-			//è¿”å›ç»“æœ
+			//·µ»Ø½á¹û
 			response.getWriter().write(str);
 
 		} catch (FileUploadException e) {
@@ -174,7 +174,7 @@ public class BanarServlet extends HttpServlet {
 	}
 
 	private void dofindAllBanar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// pageï¼šé¡µç ï¼Œèµ·å§‹å€¼ 1ã€‚ rowsï¼šæ¯é¡µæ˜¾ç¤ºè¡Œã€‚ pageä¸ºå‰å°è¦æŸ¥è¯¢çš„é¡µï¼Œrowsä¸ºå‰å°çš„æ¯é¡µè®°å½•æ•°
+		// page£ºÒ³Âë£¬ÆğÊ¼Öµ 1¡£ rows£ºÃ¿Ò³ÏÔÊ¾ĞĞ¡£ pageÎªÇ°Ì¨Òª²éÑ¯µÄÒ³£¬rowsÎªÇ°Ì¨µÄÃ¿Ò³¼ÇÂ¼Êı
 		int rows = Integer.parseInt(request.getParameter("rows"));
 		// System.out.println(rows);
 		int page = Integer.parseInt(request.getParameter("page"));
@@ -184,15 +184,15 @@ public class BanarServlet extends HttpServlet {
 		pageMap.put("startPage", (page - 1) * rows);
 		pageMap.put("endPage", rows);
 
-		// è°ƒç”¨Serviceæ–¹æ³•
+		// µ÷ÓÃService·½·¨
 		BanarService banarService = BanarServiceImpl.getInstance();
-		//æŸ¥æ‰¾æŒ‡å®šé¡µçš„è®°å½•
+		//²éÕÒÖ¸¶¨Ò³µÄ¼ÇÂ¼
 		List<Banar> list = banarService.findAllBanar(pageMap);
 		// System.out.println(list.size());
-		//æŸ¥æ‰¾æ€»è®°å½•æ•°
+		//²éÕÒ×Ü¼ÇÂ¼Êı
 		int total = banarService.banarCount();
 
-		// JSONä¸­ï¼Œtotalè®°å½•æ€»æ•°ï¼Œrowsè®°å½•ã€‚totalä¸ºåå°è¿”å›çš„ï¼ˆæ•°æ®åº“çš„ï¼‰æ€»è®°å½•æ•°ï¼Œï¼ˆç¬¬äºŒä¸ªï¼‰rowsä¸ºåå°è¿”å›çš„jsonå¯¹è±¡æ•°ç»„ã€‚
+		// JSONÖĞ£¬total¼ÇÂ¼×ÜÊı£¬rows¼ÇÂ¼¡£totalÎªºóÌ¨·µ»ØµÄ£¨Êı¾İ¿âµÄ£©×Ü¼ÇÂ¼Êı£¬£¨µÚ¶ş¸ö£©rowsÎªºóÌ¨·µ»ØµÄjson¶ÔÏóÊı×é¡£
 		map.put("rows", list);
 		map.put("total", total);
 		String str = JSONObject.toJSONString(map);
@@ -200,9 +200,9 @@ public class BanarServlet extends HttpServlet {
 		response.getWriter().write(str);
 
 		/*
-		 * //è·å–session HttpSession se = request.getSession(); // è°ƒç”¨Serviceæ–¹æ³•
+		 * //»ñÈ¡session HttpSession se = request.getSession(); // µ÷ÓÃService·½·¨
 		 * BanarService banarService = BanarServiceImpl.getInstance();
-		 * List<Banar> banars = null; // æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ· banars =
+		 * List<Banar> banars = null; // ²éÑ¯ËùÓĞÓÃ»§ banars =
 		 * banarService.findAllBanar(); if(banars != null) { //
 		 * System.out.println(banars.size()); se.setAttribute("banarList",
 		 * banars); response.sendRedirect(request.getContextPath() +
