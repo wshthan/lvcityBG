@@ -7,6 +7,11 @@ import com.neuedu.lvcity.model.Message;
 import com.neuedu.lvcity.service.MessageService;
 
 public class MessageServiceImpl implements MessageService {
+	
+	private static final MessageService instance = new MessageServiceImpl();
+	public static MessageService getInstance() {
+		return instance;
+	}
 
 	@Override
 	public int messageCount() {

@@ -7,7 +7,12 @@ import com.neuedu.lvcity.model.Contact;
 import com.neuedu.lvcity.service.ContactService;
 
 public class ContactServiceImpl implements ContactService {
-
+	
+	private static final ContactService instance = new ContactServiceImpl();
+	public static ContactService getInstance() {
+		return instance;
+	}
+	
 	@Override
 	public int contactCount() {
 		// TODO Auto-generated method stub
