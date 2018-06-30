@@ -67,7 +67,7 @@
 <body>
 
 	<table id="team_dg" class="easyui-datagrid" style="height: 670px;"
-		url="team/findAll.do" toolbar="#team_toolbar" pagination="true"
+		url="team?action=findAllTeam" toolbar="#team_toolbar" pagination="true"
 		rownumbers="true" fitColumns="true" singleSelect="true"
 		data-options="fit:false,border:false,pageSize:5,pageList:[5,10,15,20]">
 		<thead>

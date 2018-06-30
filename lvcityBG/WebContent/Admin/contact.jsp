@@ -60,7 +60,7 @@
 <body>
 
 	<table id="contact_dg" class="easyui-datagrid" style="height: 670px;"
-		url="contact/findAll.do" toolbar="#contact_toolbar" pagination="true"
+		url="contact?action=findAllContact" toolbar="#contact_toolbar" pagination="true"
 		rownumbers="true" fitColumns="true" singleSelect="true"
 		data-options="fit:false,border:false,pageSize:5,pageList:[5,10,15,20]">
 		<thead>
